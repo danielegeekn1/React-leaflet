@@ -19,8 +19,8 @@ function App() {
     },
   ];
   const customIcon = new Icon({
-    iconUrl:
-      "https://as2.ftcdn.net/v2/jpg/02/98/28/57/1000_F_298285715_ct4qtZOJH119A39TdMrbkLsfziVCX1Rz.jpg",
+    //iconUrl: "https://as2.ftcdn.net/v2/jpg/02/98/28/57/1000_F_298285715_ct4qtZOJH119A39TdMrbkLsfziVCX1Rz.jpg",
+    iconUrl: require("./img/map.png"),
     iconSize: [38, 38],
   });
   return (
