@@ -2,7 +2,8 @@ import { MapContainer, Marker, TileLayer, Popup } from "react-leaflet";
 
 import "./app.css";
 import "leaflet/dist/leaflet.css";
-import { Icon } from "leaflet";
+import { Icon, divIcon, point } from "leaflet";
+import MarkerClusterGroup from "react-leaflet-cluster";
 function App() {
   const markers = [
     {
@@ -23,6 +24,13 @@ function App() {
     iconUrl: require("./img/map.png"),
     iconSize: [38, 38],
   });
+  const createCustomClusterIcon = (cluster) => {
+    return new divIcon({
+      html: `<div class="cluster-icon">${cluster.getChildCount()}</div>`,
+      className: "custom-marker-cluster",
+      iconSize: point(33, 33, true),
+    });
+  };
   return (
     <div>
       <MapContainer center={[48.8566, 2.3522]} zoom={13}>
@@ -30,11 +38,16 @@ function App() {
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         />
-        {markers.map((marker) => (
-          <Marker position={marker.geoCode} icon={customIcon}>
-            <Popup>{marker.popup}</Popup>
-          </Marker>
-        ))}
+        <MarkerClusterGroup
+          chunkedLoading
+          iconCreateFunction={createCustomClusterIcon}
+        >
+          {markers.map((marker) => (
+            <Marker position={marker.geoCode} icon={customIcon}>
+              <Popup>{marker.popup}</Popup>
+            </Marker>
+          ))}
+        </MarkerClusterGroup>
       </MapContainer>
     </div>
   );
