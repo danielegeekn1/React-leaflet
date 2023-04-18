@@ -38,6 +38,10 @@ function App() {
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         />
+        <TileLayer
+          attribution="Stamen Watercolor"
+          url="https://stamen-tiles-{s}.a.ssl.fastly.net/watercolor/{z}/{x}/{y}.jpg"
+        />
         <MarkerClusterGroup
           chunkedLoading
           iconCreateFunction={createCustomClusterIcon}
